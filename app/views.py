@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from .models import Project
 from rest_framework.views import APIView
 from .serializer import ProjectSerializer
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -18,3 +21,15 @@ class ProjectList(APIView):
                 serializers.save()
                 return Response(serializers.data, status=status.HTTP_201_CREATED)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProjectDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_project(self, pk):
+        project = Project.objects.get(pk=pk)
+        return project
+       
+
+    def get(self, request, pk, format=None):
+        project = self.get_project(pk)
+        serializers = ProjectSerializer(project)
+        return Response(serializers.data)
