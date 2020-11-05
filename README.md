@@ -54,6 +54,10 @@ This is a Django application for an api that allows CRUD(create, read, update an
 ```bash
  http://localhost:8000/api-token-auth/
 ```
+#### JSON web tokens
+```bash
+ http://localhost:8000/api/jwt-token/
+```
 
 #### GET requests(for POST requests add a trailing slash)
 ```bash
