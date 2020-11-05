@@ -5,11 +5,12 @@ from .serializer import ProjectSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
 class ProjectList(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAuthenticated,)
     def get(self, request, format=None):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects, many=True)
@@ -23,7 +24,7 @@ class ProjectList(APIView):
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProjectDescription(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAuthenticated,)
     def get_project(self, pk):
         project = Project.objects.get(pk=pk)
         return project

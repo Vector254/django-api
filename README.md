@@ -48,20 +48,23 @@ This is a Django application for an api that allows CRUD(create, read, update an
  ```bash 
  python manage.py test 
 ```
-#### API endpoints
-##### GET requests(for POST requests add a trailing slash)
+
+### API endpoints
+#### To generate authentication tokens, provide username and password in request body then post to the link below
+```bash
+ http://localhost:8000/api-token-auth/
+```
+
+#### GET requests(for POST requests add a trailing slash)
 ```bash
  http://localhost:8000/api/projects
 ```
 #### single item operations(UPDATE & DELETE)
-##### replace id with project id to get
+#### replace id with project id to get
 ```bash
 http://localhost:8000/api/projects/project-id/id
 ```
 
- 
-  
-  
 ## Technologies used  
   
 * [Python3.8](https://www.python.org/)  
